@@ -443,7 +443,13 @@ input, button { font-size: 1rem; }
 .testimonials__avg strong { color: var(--text-dark); font-family: var(--font-heading); }
 
 .slider { max-width: 780px; margin: 0 auto; }
-.slider__track { display: flex; transition: transform var(--t-med); }
+.slider__track {
+  display: flex;
+  transition: transform var(--t-med);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  touch-action: pan-y;
+}
 .testimonial {
   flex: 0 0 100%;
   background: var(--white);

@@ -199,13 +199,19 @@
     }
     restartAutoplay();
 
-    // Swipe touch support
+    // Swipe touch support — só reage a gestos claramente horizontais,
+    // pra não brigar com o scroll vertical da página no celular.
     let touchStartX = 0;
-    track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    let touchStartY = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
     track.addEventListener('touchend', (e) => {
-      const diff = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(diff) > 40) {
-        goToSlide(diff > 0 ? currentSlide - 1 : currentSlide + 1);
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      const diffY = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        goToSlide(diffX > 0 ? currentSlide - 1 : currentSlide + 1);
         restartAutoplay();
       }
     }, { passive: true });
