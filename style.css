@@ -152,9 +152,8 @@ input, button { font-size: 1rem; }
 .logo { display: inline-flex; align-items: center; gap: 0.6rem; }
 .logo__mark {
   width: 38px; height: 38px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--rose-burnt), var(--gold));
-  color: #fff; display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600;
+  object-fit: cover; flex-shrink: 0;
+  box-shadow: 0 2px 8px -2px rgba(43, 35, 32, 0.35);
 }
 .logo__text {
   font-family: var(--font-heading);
