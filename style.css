@@ -614,6 +614,8 @@ input, button { font-size: 1rem; }
 .footer__bottom { border-top: 1px solid rgba(255,255,255,0.12); padding: 1.6rem 0; margin-top: 1rem; }
 .footer__bottom-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
 .footer__credit strong { color: var(--rose-gold); font-weight: 600; }
+.footer__credit a { transition: opacity var(--t-fast); }
+.footer__credit a:hover { opacity: 0.75; }
 
 /* =========================================================
    FLOATING BUTTONS
