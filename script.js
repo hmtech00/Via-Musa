@@ -174,7 +174,10 @@
 
   const goToSlide = (index) => {
     currentSlide = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Posição em pixels (medida de verdade), não em % — evita qualquer
+    // cálculo ambíguo de porcentagem em navegadores mobile.
+    const slideWidth = track.getBoundingClientRect().width;
+    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
     dotsWrap.querySelectorAll('.slider__dot').forEach((dot, i) => {
       dot.classList.toggle('is-active', i === currentSlide);
     });
@@ -215,6 +218,19 @@
         restartAutoplay();
       }
     }, { passive: true });
+
+    // Recalcula a posição em pixels ao girar a tela/redimensionar,
+    // sem animar o salto (senão dá um "pulo" visível no card).
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        track.style.transition = 'none';
+        goToSlide(currentSlide);
+        void track.offsetWidth;
+        track.style.transition = '';
+      }, 150);
+    });
   }
 
   /* ---------- Botão voltar ao topo ---------- */

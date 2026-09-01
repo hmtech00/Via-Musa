@@ -444,6 +444,7 @@ input, button { font-size: 1rem; }
 .slider { max-width: 780px; margin: 0 auto; }
 .slider__track {
   display: flex;
+  width: 100%;
   transition: transform var(--t-med);
   overflow: hidden;
   border-radius: var(--radius-lg);
